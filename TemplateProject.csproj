@@ -6,7 +6,6 @@
         <Version>1.0.1</Version>
         <PackageId>BackslashDev.Service.Template</PackageId>
         <Description>A multi-project solution template for fast setup of a new service.</Description>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
         <IncludeContentInPack>true</IncludeContentInPack>
