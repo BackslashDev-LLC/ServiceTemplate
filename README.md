@@ -1,6 +1,6 @@
 # BackslashDev Service Template
 
-![NuGet Version](https://img.shields.io/nuget/v/BackslashDev.Service.Template)
+![NuGet Version](https://img.shields.io/nuget/v/BackslashDev.Service.Template?link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FBackslashDev.Service.Template)
 
 This repository contains a starter template for building a .NET 8 Service utilizing preferred patterns and practices.
 
@@ -28,7 +28,7 @@ The background processor is configured as a consumer of messages enqueued in Rab
 
 ## Utilization
 
-Install the template in your local machine from our nuget repository using the following command:
+Install the template in your local machine from nuget using the following command:
 
 ```sh
 dotnet new install BackslashDev.Service.Template
@@ -41,5 +41,7 @@ mkdir NewFolder
 cd NewFolder
 dotnet new backslashdevservice --name CoolNewProject
 ```
+
+For complete instructions see [Microsoft Documentation for dotnet new](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new)
 
 Ensure the `docker-compose` project is set as the startup project, and then start debugging.
