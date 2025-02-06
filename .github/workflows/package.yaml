@@ -3,6 +3,18 @@ name: Publish Template to NuGet
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - "README.md"
+      - "LICENSE"
+      - "CONTRIBUTING.md"
+      - "CODE_OF_CONDUCT.md"
+      - "SECURITY.md"
+      - "PULL_REQUEST_TEMPLATE.md"
+      - "ISSUE_TEMPLATE.md"
+      - ".github/**"
+      - "docs/**"
+      - "tests/**"
+      - "nupkg/**"
 
 jobs:
   publish-package:

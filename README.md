@@ -1,5 +1,7 @@
 # BackslashDev Service Template
 
+![NuGet Version](https://img.shields.io/nuget/v/BackslashDev.Service.Template)
+
 This repository contains a starter template for building a .NET 8 Service utilizing preferred patterns and practices.
 
 This template follows a rough implementation of "Clean Architecture" with a Domain library at the center, wrapped by an Application. The Application is then implemented in the Infrastructure project. The application and infrastructure are then utilized by the presentation layers, which in this case are the API and BackgroundProcessor.
