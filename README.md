@@ -30,6 +30,7 @@ Install the template in your local machine from our nuget repository using the f
 
 ```sh
 dotnet new --install <pkg-url>
+dotnet add package BackslashDev.Service.Template --version 1.0.2
 ```
 
 Verify installation with:
