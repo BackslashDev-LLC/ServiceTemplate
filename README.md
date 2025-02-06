@@ -1,6 +1,6 @@
 # BackslashDev Service Template
 
-![NuGet Version](https://img.shields.io/nuget/v/BackslashDev.Service.Template?link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FBackslashDev.Service.Template)
+[![NuGet version (BackslashDev.Service.Template)](https://img.shields.io/nuget/v/BackslashDev.Service.Template.svg?style=flat-square)](https://www.nuget.org/packages/BackslashDev.Service.Template/)
 
 This repository contains a starter template for building a .NET 8 Service utilizing preferred patterns and practices.
 
