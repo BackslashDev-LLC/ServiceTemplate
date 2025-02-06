@@ -29,21 +29,14 @@ The background processor is configured as a consumer of messages enqueued in Rab
 Install the template in your local machine from our nuget repository using the following command:
 
 ```sh
-dotnet new --install <pkg-url>
-dotnet add package BackslashDev.Service.Template --version 1.0.2
-```
-
-Verify installation with:
-
-```sh
-dotnet new --list
+dotnet new install BackslashDev.Service.Template
 ```
 
 To create your new project, execute the following:
 
 ```sh
-mkdir CoolNewProject
-cd CoolNewProject
+mkdir NewFolder
+cd NewFolder
 dotnet new backslashdevservice --name CoolNewProject
 ```
 
