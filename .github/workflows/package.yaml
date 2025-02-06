@@ -1,0 +1,61 @@
+name: Publish Template to NuGet
+
+on:
+  push:
+    branches: ["main"] # or whichever branch triggers your release
+
+jobs:
+  publish-package:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Check out source
+      - uses: actions/checkout@v3
+
+      # 2. Setup .NET
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+
+      # 3. Bump the patch version in TemplateProject.csproj
+      - name: Bump patch version
+        run: |
+          csprojFile="TemplateProject.csproj"
+          echo "Reading current version from $csprojFile..."
+
+          # Grab the old version by looking for <Version>xxx</Version>
+          oldVersion=$(sed -n 's|.*<Version>\(.*\)</Version>.*|\1|p' "$csprojFile")
+          echo "Current version: $oldVersion"
+
+          # Split oldVersion by '.' into major, minor, patch
+          IFS='.' read -r major minor patch <<< "$oldVersion"
+          # Increment patch
+          patch=$(( patch + 1 ))
+          newVersion="${major}.${minor}.${patch}"
+
+          echo "Bumping version to: $newVersion"
+
+          # Use sed to replace the old version with newVersion
+          sed -i "s|<Version>$oldVersion</Version>|<Version>$newVersion</Version>|" "$csprojFile"
+
+          # Print updated line (for debugging)
+          grep "<Version>" "$csprojFile"
+
+      # 4. Restore & pack
+      - name: Restore
+        run: dotnet restore TemplateProject.csproj
+
+      - name: Pack
+        run: dotnet pack TemplateProject.csproj --configuration Release --output ./nupkg
+
+      # 5. Publish the package to GitHub Packages
+      - name: Push to GitHub Packages
+        run: |
+          dotnet nuget push "nupkg/*.nupkg" \
+            --api-key ${{ secrets.GITHUB_TOKEN }} \
+            --source "https://nuget.pkg.github.com/BackslashDev-LLC/index.json" \
+            --skip-duplicate
+        env:
+          # On GitHub Actions, this is automatically set,
+          # but we make it explicit in case we need it.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

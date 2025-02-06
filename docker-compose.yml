@@ -1,0 +1,51 @@
+services:
+  solutiontemplate.queue:
+    image: rabbitmq:3.13.4-management-alpine
+    container_name: solutiontemplate.queue
+    ports:
+      - 5672:5672
+      - 15672:15672
+      - 15692:15692
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - solutiontemplatenet
+
+  solutiontemplate.db:
+    build: ./Database
+    container_name: solutiontemplate.db
+    ports:
+      - 1433:1433
+    networks:
+      - solutiontemplatenet
+
+  solutiontemplate.api:
+    image: ${DOCKER_REGISTRY-}solutiontemplateapi
+    build:
+      context: .
+      dockerfile: SolutionTemplate.Api/Dockerfile
+    networks:
+      - solutiontemplatenet
+    depends_on:
+      - solutiontemplate.queue
+      - solutiontemplate.db
+
+  solutiontemplate.backgroundprocessor:
+    image: ${DOCKER_REGISTRY-}solutiontemplatebackgroundprocessor
+    build:
+      context: .
+      dockerfile: SolutionTemplate.BackgroundProcessor/Dockerfile
+    networks:
+      - solutiontemplatenet
+    depends_on:
+      - solutiontemplate.queue
+      - solutiontemplate.db
+
+networks:
+    solutiontemplatenet:
+        driver: bridge
+

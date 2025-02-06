@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <PackageType>Template</PackageType>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Authors>BackslashDev LLC</Authors>
+        <Version>1.0.1</Version>
+        <PackageId>BackslashDev.Service.Template</PackageId>
+        <Description>A multi-project solution template for fast setup of a new service.</Description>
+
+        <IncludeContentInPack>true</IncludeContentInPack>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <ContentTargetFolders>content</ContentTargetFolders>
+        <NoDefaultExcludes>true</NoDefaultExcludes>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="**\*" Exclude="**\bin\**;**\obj\**;**\TemplateProject.csproj" />
+        <Compile Remove="**\*" />
+    </ItemGroup>
+
+</Project>
