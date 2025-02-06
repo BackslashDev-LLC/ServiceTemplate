@@ -15,7 +15,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="**\*" Exclude="**\bin\**;**\obj\**;**\TemplateProject.csproj;**\.github\*" />
+        <Content Include="**\*" Exclude="bin\**;obj\**;.git\**;.github\**;**\TemplateProject.csproj" />
         <Compile Remove="**\*" />
     </ItemGroup>
 
